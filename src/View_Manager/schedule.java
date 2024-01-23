@@ -15,13 +15,17 @@ import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
+import javax.swing.JSpinner;
 import javax.swing.JTable;
 import javax.swing.JTextField;
+import javax.swing.SpinnerDateModel;
 import javax.swing.border.Border;
 import javax.swing.border.EmptyBorder;
 import javax.swing.border.TitledBorder;
 import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.DefaultTableModel;
+
+import com.toedter.calendar.JDateChooser;
 
 import Connection.DBController;
 
@@ -40,14 +44,24 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.Vector;
 import java.awt.Font;
 import java.awt.Color;
 import javax.swing.SwingConstants;
 import java.awt.SystemColor;
 
-public class schedule extends JFrame {
+public class Schedule extends JFrame {
 	Vector vT, vD;
+	
+	JDateChooser datePicker;
+	
+	JSpinner spinner;
+	
+	SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+	SimpleDateFormat stf = new SimpleDateFormat("HH:mm:ss");
 	
 	public static Vector getvD() {
 		Connection con = new DBController().getConnection();
@@ -122,7 +136,7 @@ public class schedule extends JFrame {
 		return icon;
 	}
 	
-	public schedule() {
+	public Schedule() {
 		Container con = getContentPane();
 		JPanel pnmain = new JPanel();
 		pnmain.setLayout(new BorderLayout());
@@ -165,7 +179,33 @@ public class schedule extends JFrame {
 		jcbteam1.setSelectedItem(null);
 		final JComboBox jcbteam2 = new JComboBox(getMDB());
 		jcbteam2.setSelectedItem(null);
-		final JTextField tfngay = new JTextField();
+		
+		//final JTextField tfngay = new JTextField();
+		
+		JDateChooser datePicker = new JDateChooser();
+		datePicker.setDateFormatString("yyyy-MM-dd"); // Định dạng ngày tháng
+
+        JButton btnGetDate1 = new JButton("Get Selected Date");
+        btnGetDate1.addActionListener(e -> {
+            // Lấy ngày được chọn và hiển thị trong console
+            Date selectedDate1 = datePicker.getDate();
+            SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
+            System.out.println("Selected Date: " + dateFormat.format(selectedDate1));
+        });
+        
+        spinner = new JSpinner();
+		spinner.setModel(new SpinnerDateModel());
+		JSpinner.DateEditor timeEditor = new JSpinner.DateEditor(spinner, "HH:mm:ss");
+		spinner.setEditor(timeEditor);
+        try {	
+        	SimpleDateFormat stf = new SimpleDateFormat("HH:mm:ss");
+			Date twelveOClock = stf.parse("12:00:00");
+			spinner.setValue(twelveOClock);
+		} catch (Exception e) {
+			// TODO: handle exception
+		}
+        
+        
 		final JTextField tfgio = new JTextField();
 		final JComboBox jcbsvd = new JComboBox(getSVD());
 		jcbsvd.setSelectedItem(null);
@@ -321,8 +361,32 @@ public class schedule extends JFrame {
 				tfid.setText((String)tb.getValueAt(row, 0));
 				jcbteam1.setSelectedItem((String)tb.getValueAt(row, 1));
 				jcbteam2.setSelectedItem((String)tb.getValueAt(row, 2));
-				tfngay.setText((String)tb.getValueAt(row, 3));
-				tfgio.setText((String)tb.getValueAt(row, 4));
+				
+				Object dateObject = tb.getValueAt(row, 3);
+
+				// Kiểm tra nếu giá trị không null và là một chuỗi
+				if (dateObject != null && dateObject instanceof String) {
+				    
+				    try {
+				        Date date = sdf.parse((String) dateObject);
+				        datePicker.setDate(date);
+				    } catch (ParseException e3) {
+				       e3.printStackTrace();
+				    }
+				}
+				
+				Object timeObject = tb.getValueAt(row, 4);
+
+				// Kiểm tra nếu giá trị không null và là một chuỗi
+				if (timeObject != null && timeObject instanceof String) {
+				    try {
+				        Date time = stf.parse((String) timeObject);
+				        spinner.setValue(time);
+				    } catch (ParseException e3) {
+				        e3.printStackTrace();
+				    }
+				}
+				
 				jcbsvd.setSelectedItem((String)tb.getValueAt(row, 5));
 				
 			}
@@ -339,18 +403,32 @@ public class schedule extends JFrame {
 					stm.setString(1, tfid.getText());
 					stm.setString(2, (String) jcbteam1.getSelectedItem());
 					stm.setString(3, (String) jcbteam2.getSelectedItem());
-					stm.setString(4, tfngay.getText());
-					stm.setString(5, tfgio.getText());
+		            
+		            //String formattedDate = sdf.format(datePicker.getDate());
+		            
+		            stm.setString(4, (String)sdf.format(datePicker.getDate()));
+		            stm.setString(5, (String)stf.format(spinner.getValue()));
 					stm.setString(6, jcbsvd.getSelectedItem() + "");
 					stm.execute();
 					JOptionPane.showMessageDialog(null, "Thêm lịch thi đấu thành công");
+					
+					vD = getvD();
+					
+					tb.setModel(new DefaultTableModel(vD, vT));
+					
+					DefaultTableCellRenderer centerRenderer = new DefaultTableCellRenderer();
+			        centerRenderer.setHorizontalAlignment(DefaultTableCellRenderer.CENTER);
+			        
+			        // Đặt renderer cho mỗi cột trong JTable
+			        for (int i = 0; i < tb.getColumnCount(); i++) {
+			            tb.getColumnModel().getColumn(i).setCellRenderer(centerRenderer);
+			        }
 				
 				} catch (SQLException e1) {
 					JOptionPane.showMessageDialog(null, "Thêm lịch thi đấu không thành công");
 					e1.printStackTrace();
 				}
-				vD = getvD();
-				tb.setModel(new DefaultTableModel(vD, vT));
+				
 			}
 		});
 		
@@ -365,8 +443,10 @@ public class schedule extends JFrame {
 					stm.setString(1, tfid.getText());
 					stm.setString(2, (String) jcbteam1.getSelectedItem());
 					stm.setString(3, (String) jcbteam2.getSelectedItem());
-					stm.setString(4, tfngay.getText());
-					stm.setString(5, tfgio.getText());
+		            
+		            stm.setString(4, (String)sdf.format(datePicker.getDate()));
+		            
+		            stm.setString(5, (String)stf.format(spinner.getValue()));
 					stm.setString(6, jcbsvd.getSelectedItem() + "");
 					stm.setString(7, tfid.getText());
 					stm.execute();
@@ -374,6 +454,14 @@ public class schedule extends JFrame {
 					
 					vD = getvD();
 					tb.setModel(new DefaultTableModel(vD, vT));
+					
+					DefaultTableCellRenderer centerRenderer = new DefaultTableCellRenderer();
+			        centerRenderer.setHorizontalAlignment(DefaultTableCellRenderer.CENTER);
+			        
+			        // Đặt renderer cho mỗi cột trong JTable
+			        for (int i = 0; i < tb.getColumnCount(); i++) {
+			            tb.getColumnModel().getColumn(i).setCellRenderer(centerRenderer);
+			        }
 				} catch (Exception e2) {
 					// TODO: handle exception
 					JOptionPane.showMessageDialog(null, "Cập nhập không thành công");
@@ -398,6 +486,14 @@ public class schedule extends JFrame {
 						
 						vD = getvD();
 						tb.setModel(new DefaultTableModel(vD, vT));
+						
+						DefaultTableCellRenderer centerRenderer = new DefaultTableCellRenderer();
+				        centerRenderer.setHorizontalAlignment(DefaultTableCellRenderer.CENTER);
+				        
+				        // Đặt renderer cho mỗi cột trong JTable
+				        for (int i = 0; i < tb.getColumnCount(); i++) {
+				            tb.getColumnModel().getColumn(i).setCellRenderer(centerRenderer);
+				        }
 					}
 				} catch (Exception e2) {
 					// TODO: handle exception
@@ -413,8 +509,8 @@ public class schedule extends JFrame {
 				tfid.setText("");
 		        jcbteam1.setSelectedItem(null);
 		        jcbteam2.setSelectedItem(null);
-		        tfngay.setText("");
-		        tfgio.setText("");
+		        datePicker.setDate(null);
+		        spinner.setValue(null);
 		        jcbsvd.setSelectedItem(null);
 		        jbteam1.setIcon(null);
 		        jbteam2.setIcon(null);
@@ -445,9 +541,9 @@ public class schedule extends JFrame {
 		pncenter_center.add(lbteam2);
 		pncenter_center.add(jcbteam2);
 		pncenter_center.add(lbngay);
-		pncenter_center.add(tfngay);
+		pncenter_center.add(datePicker);
 		pncenter_center.add(lbgio);
-		pncenter_center.add(tfgio);
+		pncenter_center.add(spinner);
 		pncenter_center.add(lbsvd);
 		pncenter_center.add(jcbsvd);
 		pncenter_center.add(emty);
@@ -469,6 +565,12 @@ public class schedule extends JFrame {
 		pneast.setLayout(new FlowLayout(FlowLayout.CENTER, 0, 0));
 		con.add(pnmain, BorderLayout.CENTER);	
 		
+		ImageIcon logo = new ImageIcon(getClass().getResource("/iconbutton/football-ball.png"));
+		this.setIconImage(logo.getImage());
+		
+		setTitle("Quản lý lịch thi đấu");
+
+		
 		setSize(1280,750);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setVisible(true);
@@ -477,6 +579,6 @@ public class schedule extends JFrame {
 		
 	}
 	public static void main(String[] args) {
-		new schedule();
+		new Schedule();
 	}
 }

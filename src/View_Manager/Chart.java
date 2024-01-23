@@ -3,11 +3,16 @@ package View_Manager;
 import java.awt.Container;
 import java.awt.Dimension;
 import java.awt.EventQueue;
+import java.awt.Font;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.util.Vector;
 
+import javax.swing.ImageIcon;
+import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
@@ -25,6 +30,9 @@ import org.jfree.data.KeyToGroupMap;
 import org.jfree.data.category.DefaultCategoryDataset;
 
 import Connection.DBController;
+import View_User.MainGUI_User;
+
+import java.awt.Color;
 
 public class Chart extends JFrame {
 	
@@ -58,6 +66,12 @@ public class Chart extends JFrame {
 		Container con = getContentPane();
 		
 		JPanel pnmain = new JPanel();
+		pnmain.setBackground(new Color(245, 255, 250));
+		
+		JButton jbback = new JButton("Trở lại");
+        jbback.setFont(new Font("Courier New", Font.BOLD, 14));
+        jbback.setIcon(new ImageIcon(Chart.class.getResource("/iconbutton/arrow_back.png")));
+        jbback.setFocusable(false);
 		
 		DefaultCategoryDataset dataset = new DefaultCategoryDataset();
 		vT = getPoint();
@@ -79,13 +93,24 @@ public class Chart extends JFrame {
 		ChartPanel chartPanel = new ChartPanel(chart);
 		chartPanel.setPreferredSize(new Dimension(1200,600));
 		
-		
+		jbback.addActionListener(new ActionListener() {
+			
+			public void actionPerformed(ActionEvent e) {
+				// TODO Auto-generated method stub
+				setVisible(false);
+				new Rank();
+			}
+		});
 		 		
 		pnmain.add(chartPanel);
+		pnmain.add(jbback);
 		
 		con.add(pnmain);
 		
+		ImageIcon logo = new ImageIcon(getClass().getResource("/iconbutton/bar_chart.png"));
+		this.setIconImage(logo.getImage());
 		
+		setTitle("Biểu đồ");
 		setSize(1280,750);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setVisible(true);

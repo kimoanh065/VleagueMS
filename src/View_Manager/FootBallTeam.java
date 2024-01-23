@@ -279,6 +279,15 @@ public class FootBallTeam extends JFrame {
 				}
 				vD = getvD();
 				tb.setModel(new DefaultTableModel(vD, vT));
+				
+				// Tạo một TableCellRenderer để căn giữa dữ liệu trong cột
+				DefaultTableCellRenderer centerRenderer = new DefaultTableCellRenderer();
+		        centerRenderer.setHorizontalAlignment(DefaultTableCellRenderer.CENTER);
+		        
+		        // Đặt renderer cho mỗi cột trong JTable
+		        for (int i = 0; i < tb.getColumnCount(); i++) {
+		            tb.getColumnModel().getColumn(i).setCellRenderer(centerRenderer);
+		        }
 			}
 		});
 		
@@ -337,6 +346,15 @@ public class FootBallTeam extends JFrame {
 					
 					vD = getvD();
 					tb.setModel(new DefaultTableModel(vD, vT));
+					
+					// Tạo một TableCellRenderer để căn giữa dữ liệu trong cột
+					DefaultTableCellRenderer centerRenderer = new DefaultTableCellRenderer();
+			        centerRenderer.setHorizontalAlignment(DefaultTableCellRenderer.CENTER);
+			        
+			        // Đặt renderer cho mỗi cột trong JTable
+			        for (int i = 0; i < tb.getColumnCount(); i++) {
+			            tb.getColumnModel().getColumn(i).setCellRenderer(centerRenderer);
+			        }
 				} catch (Exception e2) {
 					// TODO: handle exception
 					JOptionPane.showMessageDialog(null, "Cập nhập không thành công");
@@ -361,6 +379,15 @@ public class FootBallTeam extends JFrame {
 						
 						vD = getvD();
 						tb.setModel(new DefaultTableModel(vD, vT));
+						
+						// Tạo một TableCellRenderer để căn giữa dữ liệu trong cột
+						DefaultTableCellRenderer centerRenderer = new DefaultTableCellRenderer();
+				        centerRenderer.setHorizontalAlignment(DefaultTableCellRenderer.CENTER);
+				        
+				        // Đặt renderer cho mỗi cột trong JTable
+				        for (int i = 0; i < tb.getColumnCount(); i++) {
+				            tb.getColumnModel().getColumn(i).setCellRenderer(centerRenderer);
+				        }
 					}
 				} catch (Exception e2) {
 					// TODO: handle exception
@@ -380,7 +407,11 @@ public class FootBallTeam extends JFrame {
 		pnmain.add(pncenter, BorderLayout.CENTER);
 		con.add(pnmain, BorderLayout.CENTER);
 		
+		ImageIcon logo = new ImageIcon(getClass().getResource("/iconbutton/football-ball.png"));
+		this.setIconImage(logo.getImage());
 		
+		setTitle("Quản lý đội bóng");
+
 		setSize(1280,750);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setVisible(true);

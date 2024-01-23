@@ -44,31 +44,31 @@ public class MainGUI_User extends JFrame {
 		pnmain.setOpaque(false);
 		
 		
-		JButton jbcauthu = new JButton();
-		jbcauthu.setBackground(new Color(255, 255, 255));
-		jbcauthu.setIcon(new ImageIcon(MainGUI.class.getResource("/iconbutton/players.png")));
-		jbcauthu.setBorder(new LineBorder(new Color(0, 0, 0), 5));
+		JButton jbplayer = new JButton();
+		jbplayer.setBackground(new Color(255, 255, 255));
+		jbplayer.setIcon(new ImageIcon(MainGUI.class.getResource("/iconbutton/players.png")));
+		jbplayer.setBorder(new LineBorder(new Color(0, 0, 0), 5));
 		
 		Dimension buttonSize = new Dimension(200, 200);
-		jbcauthu.setPreferredSize(buttonSize);
+		jbplayer.setPreferredSize(buttonSize);
 		
-		JButton jbdoibong = new JButton();
-		jbdoibong.setBackground(new Color(255, 255, 255));
-		jbdoibong.setIcon(new ImageIcon(MainGUI.class.getResource("/iconbutton/team.png")));
-		jbdoibong.setPreferredSize(buttonSize);
-		jbdoibong.setBorder(new LineBorder(new Color(0, 0, 0), 5));
+		JButton jbteam = new JButton();
+		jbteam.setBackground(new Color(255, 255, 255));
+		jbteam.setIcon(new ImageIcon(MainGUI.class.getResource("/iconbutton/team.png")));
+		jbteam.setPreferredSize(buttonSize);
+		jbteam.setBorder(new LineBorder(new Color(0, 0, 0), 5));
 		
-		JButton jblich_ketqua = new JButton();
-		jblich_ketqua.setBackground(new Color(255, 255, 255));
-		jblich_ketqua.setIcon(new ImageIcon(MainGUI.class.getResource("/iconbutton/schedule.png")));
-		jblich_ketqua.setPreferredSize(buttonSize);
-		jblich_ketqua.setBorder(new LineBorder(new Color(0, 0, 0), 5));
+		JButton jbschedule_result = new JButton();
+		jbschedule_result.setBackground(new Color(255, 255, 255));
+		jbschedule_result.setIcon(new ImageIcon(MainGUI.class.getResource("/iconbutton/schedule.png")));
+		jbschedule_result.setPreferredSize(buttonSize);
+		jbschedule_result.setBorder(new LineBorder(new Color(0, 0, 0), 5));
 		
-		JButton jbxephang = new JButton();
-		jbxephang.setBackground(new Color(255, 255, 255));
-		jbxephang.setIcon(new ImageIcon(MainGUI.class.getResource("/iconbutton/rank.png")));
-		jbxephang.setPreferredSize(buttonSize);
-		jbxephang.setBorder(new LineBorder(new Color(0, 0, 0), 5));
+		JButton jbrank = new JButton();
+		jbrank.setBackground(new Color(255, 255, 255));
+		jbrank.setIcon(new ImageIcon(MainGUI.class.getResource("/iconbutton/rank.png")));
+		jbrank.setPreferredSize(buttonSize);
+		jbrank.setBorder(new LineBorder(new Color(0, 0, 0), 5));
 		
 		JButton jblogout = new JButton();
 		jblogout.setBackground(new Color(255, 255, 255));
@@ -80,11 +80,11 @@ public class MainGUI_User extends JFrame {
 		lbimage.setIcon(new ImageIcon(MainGUI_User.class.getResource("/background/background4.jpg")));
 		
 		JMenuBar mbar = new JMenuBar();
-		JMenu cauthu = new JMenu("Cầu thủ");
-		JMenu doibong = new JMenu("Đội bóng");
-		JMenu lichthidau_ketqua = new JMenu("Lịch thi đấu và kết quả");
-		JMenu xephang = new JMenu("Bảng xếp hạng");
-		JMenu taitro = new JMenu("Tài trợ");
+		JMenu player = new JMenu("Cầu thủ");
+		JMenu team = new JMenu("Đội bóng");
+		JMenu schedule_result = new JMenu("Lịch thi đấu và kết quả");
+		JMenu rank = new JMenu("Bảng xếp hạng");
+		JMenu sponsor = new JMenu("Tài trợ");
 		
 		
 		JMenuItem itemdscauthu = new JMenuItem("Danh sách");
@@ -97,7 +97,7 @@ public class MainGUI_User extends JFrame {
 		
 		JMenuItem itemrank = new JMenuItem("Bảng xếp hạng");
 		
-		jbcauthu.addActionListener(new ActionListener() {
+		jbplayer.addActionListener(new ActionListener() {
 			
 			public void actionPerformed(ActionEvent e) {
 				// TODO Auto-generated method stub
@@ -106,7 +106,7 @@ public class MainGUI_User extends JFrame {
 			}
 		});
 		
-		jbdoibong.addActionListener(new ActionListener() {
+		jbteam.addActionListener(new ActionListener() {
 			
 			public void actionPerformed(ActionEvent e) {
 				// TODO Auto-generated method stub
@@ -115,16 +115,16 @@ public class MainGUI_User extends JFrame {
 			}
 		});
 		
-		jblich_ketqua.addActionListener(new ActionListener() {
+		jbschedule_result.addActionListener(new ActionListener() {
 			
 			public void actionPerformed(ActionEvent e) {
 				// TODO Auto-generated method stub
-				new schedule_result_user();
+				new Schedule_result_user();
 				setVisible(false);
 			}
 		});
 		
-		jbxephang.addActionListener(new ActionListener() {
+		jbrank.addActionListener(new ActionListener() {
 			
 			public void actionPerformed(ActionEvent e) {
 				// TODO Auto-generated method stub
@@ -147,7 +147,7 @@ public class MainGUI_User extends JFrame {
 			public void actionPerformed(ActionEvent e) {
 				// TODO Auto-generated method stub
 				setVisible(false);
-				new schedule_result_user();
+				new Schedule_result_user();
 			}
 		});
 		
@@ -169,32 +169,33 @@ public class MainGUI_User extends JFrame {
 			}
 		});
 		
-		cauthu.add(itemdscauthu);
+		player.add(itemdscauthu);
 		
-		doibong.add(itemdsdoibong);
+		team.add(itemdsdoibong);
 		
-		taitro.add(itemtaitro);
+		sponsor.add(itemtaitro);
 		
-		lichthidau_ketqua.add(itemdsltdkq);
+		schedule_result.add(itemdsltdkq);
 		
-		xephang.add(itemrank);
+		rank.add(itemrank);
 		
-		mbar.add(cauthu);
-		mbar.add(doibong);
-		mbar.add(lichthidau_ketqua);
-		mbar.add(xephang);
-		mbar.add(taitro);
+		mbar.add(player);
+		mbar.add(team);
+		mbar.add(schedule_result);
+		mbar.add(rank);
+		mbar.add(sponsor);
 		
-		pnmain.add(jbcauthu);
-		pnmain.add(jbdoibong);
-		pnmain.add(jblich_ketqua);
-		pnmain.add(jbxephang);
+		pnmain.add(jbplayer);
+		pnmain.add(jbteam);
+		pnmain.add(jbschedule_result);
+		pnmain.add(jbrank);
 		pnmain.add(jblogout);
 		
 		con.add(pnmain);
 		con.add(lbimage);
 		
-		
+		ImageIcon logo = new ImageIcon(getClass().getResource("/iconbutton/football-ball.png"));
+		this.setIconImage(logo.getImage());
 	
 		setJMenuBar(mbar);
 		

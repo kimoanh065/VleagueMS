@@ -21,7 +21,7 @@ import javax.swing.border.EmptyBorder;
 import javax.swing.border.LineBorder;
 
 import View_User.MainGUI_User;
-import View_User.schedule_result_user;
+import View_User.Schedule_result_user;
 
 import javax.swing.JLabel;
 import javax.swing.JMenu;
@@ -44,37 +44,37 @@ public class MainGUI extends JFrame {
 		pnmain.setLayout(fl_pnmain);
 		pnmain.setOpaque(false);
 		
-		JButton jbcauthu = new JButton();
-		jbcauthu.setBackground(new Color(255, 255, 255));
-		jbcauthu.setIcon(new ImageIcon(MainGUI.class.getResource("/iconbutton/players.png")));
-		jbcauthu.setBorder(new LineBorder(new Color(0, 0, 0), 5));
+		JButton jbplayer = new JButton();
+		jbplayer.setBackground(new Color(255, 255, 255));
+		jbplayer.setIcon(new ImageIcon(MainGUI.class.getResource("/iconbutton/players.png")));
+		jbplayer.setBorder(new LineBorder(new Color(0, 0, 0), 5));
 		
 		Dimension buttonSize = new Dimension(200, 200);
-		jbcauthu.setPreferredSize(buttonSize);
+		jbplayer.setPreferredSize(buttonSize);
 		
-		JButton jbdoibong = new JButton();
-		jbdoibong.setBackground(new Color(255, 255, 255));
-		jbdoibong.setIcon(new ImageIcon(MainGUI.class.getResource("/iconbutton/team.png")));
-		jbdoibong.setPreferredSize(buttonSize);
-		jbdoibong.setBorder(new LineBorder(new Color(0, 0, 0), 5));
+		JButton jbteam = new JButton();
+		jbteam.setBackground(new Color(255, 255, 255));
+		jbteam.setIcon(new ImageIcon(MainGUI.class.getResource("/iconbutton/team.png")));
+		jbteam.setPreferredSize(buttonSize);
+		jbteam.setBorder(new LineBorder(new Color(0, 0, 0), 5));
 		
-		JButton jblich = new JButton();
-		jblich.setBackground(new Color(255, 255, 255));
-		jblich.setIcon(new ImageIcon(MainGUI.class.getResource("/iconbutton/schedule.png")));
-		jblich.setPreferredSize(buttonSize);
-		jblich.setBorder(new LineBorder(new Color(0, 0, 0), 5));
+		JButton jbschedule = new JButton();
+		jbschedule.setBackground(new Color(255, 255, 255));
+		jbschedule.setIcon(new ImageIcon(MainGUI.class.getResource("/iconbutton/schedule.png")));
+		jbschedule.setPreferredSize(buttonSize);
+		jbschedule.setBorder(new LineBorder(new Color(0, 0, 0), 5));
 		
-		JButton jbketqua = new JButton();
-		jbketqua.setBackground(new Color(255, 255, 255));
-		jbketqua.setIcon(new ImageIcon(MainGUI.class.getResource("/iconbutton/result.png")));
-		jbketqua.setPreferredSize(buttonSize);
-		jbketqua.setBorder(new LineBorder(new Color(0, 0, 0), 5));
+		JButton jbresult = new JButton();
+		jbresult.setBackground(new Color(255, 255, 255));
+		jbresult.setIcon(new ImageIcon(MainGUI.class.getResource("/iconbutton/result.png")));
+		jbresult.setPreferredSize(buttonSize);
+		jbresult.setBorder(new LineBorder(new Color(0, 0, 0), 5));
 		
-		JButton jbxephang = new JButton();
-		jbxephang.setBackground(new Color(255, 255, 255));
-		jbxephang.setIcon(new ImageIcon(MainGUI.class.getResource("/iconbutton/rank.png")));
-		jbxephang.setPreferredSize(buttonSize);
-		jbxephang.setBorder(new LineBorder(new Color(0, 0, 0), 5));
+		JButton jbrank = new JButton();
+		jbrank.setBackground(new Color(255, 255, 255));
+		jbrank.setIcon(new ImageIcon(MainGUI.class.getResource("/iconbutton/rank.png")));
+		jbrank.setPreferredSize(buttonSize);
+		jbrank.setBorder(new LineBorder(new Color(0, 0, 0), 5));
 		
 		JButton jblogout = new JButton();
 		jblogout.setBackground(new Color(255, 255, 255));
@@ -86,12 +86,12 @@ public class MainGUI extends JFrame {
 		lbimage.setIcon(new ImageIcon(MainGUI.class.getResource("/background/background4.jpg")));
 		
 		JMenuBar mbar = new JMenuBar();
-		JMenu cauthu = new JMenu("Cầu thủ");
-		JMenu doibong = new JMenu("Đội bóng");
-		JMenu lichthidau = new JMenu("Lịch thi đấu");
-		JMenu ketqua = new JMenu("Kết quả");
-		JMenu xephang = new JMenu("Bảng xếp hạng");
-		JMenu taitro = new JMenu("Tài trợ");
+		JMenu player = new JMenu("Cầu thủ");
+		JMenu team = new JMenu("Đội bóng");
+		JMenu schedule = new JMenu("Lịch thi đấu");
+		JMenu result = new JMenu("Kết quả");
+		JMenu rank = new JMenu("Bảng xếp hạng");
+		JMenu sponsor = new JMenu("Tài trợ");
 		
 		JMenuItem itemqlplayer = new JMenuItem("Quản lý");
 		
@@ -113,7 +113,7 @@ public class MainGUI extends JFrame {
 		
 		JMenuItem itemtaitro = new JMenuItem("Tài trợ");
 		
-		jbcauthu.addActionListener(new ActionListener() {
+		jbplayer.addActionListener(new ActionListener() {
 			
 			public void actionPerformed(ActionEvent e) {
 				// TODO Auto-generated method stub
@@ -139,7 +139,7 @@ public class MainGUI extends JFrame {
 			}
 		});
 		
-		jbdoibong.addActionListener(new ActionListener() {
+		jbteam.addActionListener(new ActionListener() {
 			
 			public void actionPerformed(ActionEvent e) {
 				// TODO Auto-generated method stub
@@ -166,25 +166,25 @@ public class MainGUI extends JFrame {
 			}
 		});
 		
-		jblich.addActionListener(new ActionListener() {
+		jbschedule.addActionListener(new ActionListener() {
 			
 			public void actionPerformed(ActionEvent e) {
 				// TODO Auto-generated method stub
-				new schedule();
+				new Schedule();
 				setVisible(false);
 			}
 		});
 		
-		jbketqua.addActionListener(new ActionListener() {
+		jbresult.addActionListener(new ActionListener() {
 			
 			public void actionPerformed(ActionEvent e) {
 				// TODO Auto-generated method stub
-				new result();
+				new Result();
 				setVisible(false);
 			}
 		});
 		
-		jbxephang.addActionListener(new ActionListener() {
+		jbrank.addActionListener(new ActionListener() {
 			
 			public void actionPerformed(ActionEvent e) {
 				// TODO Auto-generated method stub
@@ -206,7 +206,7 @@ public class MainGUI extends JFrame {
 			
 			public void actionPerformed(ActionEvent e) {
 				// TODO Auto-generated method stub
-				new schedule();
+				new Schedule();
 				setVisible(false);
 			}
 		});
@@ -215,7 +215,7 @@ public class MainGUI extends JFrame {
 			
 			public void actionPerformed(ActionEvent e) {
 				// TODO Auto-generated method stub
-				new schedule_result();
+				new Schedule_result();
 				setVisible(false);
 			}
 		});
@@ -224,7 +224,7 @@ public class MainGUI extends JFrame {
 			
 			public void actionPerformed(ActionEvent e) {
 				// TODO Auto-generated method stub
-				new result();
+				new Result();
 				setVisible(false);
 			}
 		});
@@ -233,7 +233,7 @@ public class MainGUI extends JFrame {
 			
 			public void actionPerformed(ActionEvent e) {
 				// TODO Auto-generated method stub
-				new schedule_result();
+				new Schedule_result();
 				setVisible(false);
 			}
 		});
@@ -255,40 +255,43 @@ public class MainGUI extends JFrame {
 			}
 		});
 		
-		cauthu.add(itemdsplayer);
-		cauthu.add(itemqlplayer);
+		player.add(itemdsplayer);
+		player.add(itemqlplayer);
 		
-		doibong.add(itemqlteam);
-		doibong.add(itemdsteam);
+		team.add(itemqlteam);
+		team.add(itemdsteam);
 		
-		lichthidau.add(itemqlschedule);
-		lichthidau.add(itemdsschedule);
+		schedule.add(itemqlschedule);
+		schedule.add(itemdsschedule);
 		
-		ketqua.add(itemqlresult);
-		ketqua.add(itemdsresult);
+		result.add(itemqlresult);
+		result.add(itemdsresult);
 		
-		taitro.add(itemtaitro);
+		sponsor.add(itemtaitro);
 		
-		xephang.add(itemrank);
+		rank.add(itemrank);
 		
-		mbar.add(cauthu);
-		mbar.add(doibong);
-		mbar.add(lichthidau);
-		mbar.add(ketqua);
-		mbar.add(xephang);
-		mbar.add(taitro);
+		mbar.add(player);
+		mbar.add(team);
+		mbar.add(schedule);
+		mbar.add(result);
+		mbar.add(rank);
+		mbar.add(sponsor);
 		
-		pnmain.add(jbcauthu);
-		pnmain.add(jbdoibong);
-		pnmain.add(jblich);
-		pnmain.add(jbketqua);
-		pnmain.add(jbxephang);
+		pnmain.add(jbplayer);
+		pnmain.add(jbteam);
+		pnmain.add(jbschedule);
+		pnmain.add(jbresult);
+		pnmain.add(jbrank);
 		pnmain.add(jblogout);
 		
 		con.add(pnmain);
 		con.add(lbimage);
 	
 		setJMenuBar(mbar);
+		
+		ImageIcon logo = new ImageIcon(getClass().getResource("/iconbutton/football-ball.png"));
+		this.setIconImage(logo.getImage());
 		
 		setTitle("VLEAGUE");
 		setSize(1280,750);

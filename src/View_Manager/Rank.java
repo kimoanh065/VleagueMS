@@ -90,9 +90,11 @@ public class Rank extends JFrame {
         jbback.setFont(new Font("Courier New", Font.BOLD, 14));
         jbback.setIcon(new ImageIcon(Rank.class.getResource("/iconbutton/home.png")));
         
-        Dimension buttonSize = new Dimension(150, 30);
-		jbback.setPreferredSize(buttonSize);
-		
+        JButton jbchart = new JButton("Biểu đồ");
+        jbchart.setFont(new Font("Courier New", Font.BOLD, 14));
+        jbchart.setIcon(new ImageIcon(Rank.class.getResource("/iconbutton/bar_chart.png")));
+        
+
         JLabel imageLabel = new JLabel();
         imageLabel.setIcon(new ImageIcon(Rank.class.getResource("/background/background3.png")));
         imageLabel.setSize(1280, 750);
@@ -141,9 +143,20 @@ public class Rank extends JFrame {
 			}
 		});
 		
+		jbchart.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				// TODO Auto-generated method stub
+				new Chart();
+				setVisible(false);
+			}
+		});
+		
 		//ADD thanh phan
 		
 		pnbutton.add(jbback);
+		pnbutton.add(jbchart);
 		pnname.add(lbname);
 		
 		pnmain.add(pnname, BorderLayout.NORTH);
@@ -155,7 +168,8 @@ public class Rank extends JFrame {
 		
 		
 		
-		
+		ImageIcon logo = new ImageIcon(getClass().getResource("/iconbutton/football-ball.png"));
+		this.setIconImage(logo.getImage());
 		
 		setTitle("Bảng xếp hạng");
 		setSize(1280,750);

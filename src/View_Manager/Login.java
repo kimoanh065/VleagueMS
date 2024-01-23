@@ -340,7 +340,8 @@ public class Login extends JFrame {
 				setVisible(false);
 			}
 		});
-		
+		ImageIcon logo = new ImageIcon(getClass().getResource("/iconbutton/login.png"));
+		this.setIconImage(logo.getImage());
 		
 		setSize(1280,750);
 		setTitle("Log in VLEAGUE");

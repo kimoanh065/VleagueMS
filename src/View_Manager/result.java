@@ -41,7 +41,7 @@ import javax.swing.table.DefaultTableModel;
 import Connection.DBController;
 import java.awt.SystemColor;
 
-public class result extends JFrame {
+public class Result extends JFrame {
 	Vector vT, vD;
 	public static Vector getvD() {
 		Connection con = new DBController().getConnection();
@@ -98,7 +98,7 @@ public class result extends JFrame {
 		return v;
 	}
 	
-	public result() {
+	public Result() {
 		Container con = getContentPane();
 		JPanel pnmain = new JPanel();
 		pnmain.setLayout(new BorderLayout());
@@ -365,6 +365,12 @@ public class result extends JFrame {
 		pneast.setLayout(new FlowLayout(FlowLayout.CENTER, 0, 0));
 		con.add(pnmain, BorderLayout.CENTER);
 		
+		ImageIcon logo = new ImageIcon(getClass().getResource("/iconbutton/football-ball.png"));
+		this.setIconImage(logo.getImage());
+		
+		setTitle("Quản lý kết quả trận đấu");
+
+		
 		setSize(1280,750);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setVisible(true);
@@ -372,6 +378,6 @@ public class result extends JFrame {
 		setResizable(false);
 	}
 	public static void main(String[] args) {
-		new result();
+		new Result();
 	}
 }

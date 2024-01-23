@@ -75,23 +75,28 @@ public class Rank_User extends JFrame {
 		JPanel pnname = new JPanel();
 		FlowLayout flowLayout = (FlowLayout) pnname.getLayout();
 		flowLayout.setVgap(20);
-		pnname.setBackground(new Color(255, 250, 250,50));
+		pnname.setBackground(new Color(255, 250, 250,100));
 		
-		JLabel lbname = new JLabel("Bảng xếp hạng các đội");
-		lbname.setForeground(SystemColor.textHighlightText);
+		JLabel lbname = new JLabel("BẢNG XẾP HẠNG");
+		lbname.setForeground(new Color(255, 255, 0));
 		lbname.setFont(new Font("Arial", Font.BOLD, 20));
 		
 		JPanel pnbutton = new JPanel();
+		FlowLayout flowLayout_1 = (FlowLayout) pnbutton.getLayout();
+		flowLayout_1.setVgap(10);
 		pnbutton.setOpaque(false);
 		
-        JButton jbback = new JButton();
+		JButton jbback = new JButton("Trang chủ");
+        jbback.setFont(new Font("Courier New", Font.BOLD, 14));
         jbback.setIcon(new ImageIcon(Rank_User.class.getResource("/iconbutton/home.png")));
         
-        Dimension buttonSize = new Dimension(80, 40);
-		jbback.setPreferredSize(buttonSize);
-		
+        JButton jbchart = new JButton("Biểu đồ");
+        jbchart.setFont(new Font("Courier New", Font.BOLD, 14));
+        jbchart.setIcon(new ImageIcon(Rank_User.class.getResource("/iconbutton/bar_chart.png")));
+        
+
         JLabel imageLabel = new JLabel();
-        imageLabel.setIcon(new ImageIcon(Rank_User.class.getResource("/background/sanbong.png")));
+        imageLabel.setIcon(new ImageIcon(Rank_User.class.getResource("/background/background3.png")));
         imageLabel.setSize(1280, 750);
         
 		JScrollPane scrollPane = new JScrollPane();
@@ -116,7 +121,7 @@ public class Rank_User extends JFrame {
 		final JTable tb = new JTable();
 		tb.setBackground(new Color(255, 250, 250));
 		tb.setFont(new Font("Tahoma", Font.BOLD, 10));
-		tb.setForeground(SystemColor.textHighlight);
+		tb.setForeground(SystemColor.infoText);
 		tb.setModel(new DefaultTableModel(vD, vT));
 		scrollPane.setViewportView(tb);
 		
@@ -138,9 +143,20 @@ public class Rank_User extends JFrame {
 			}
 		});
 		
+		jbchart.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				// TODO Auto-generated method stub
+				new Chart_User();
+				setVisible(false);
+			}
+		});
+		
 		//ADD thanh phan
 		
 		pnbutton.add(jbback);
+		pnbutton.add(jbchart);
 		pnname.add(lbname);
 		
 		pnmain.add(pnname, BorderLayout.NORTH);
@@ -152,7 +168,8 @@ public class Rank_User extends JFrame {
 		
 		
 		
-		
+		ImageIcon logo = new ImageIcon(getClass().getResource("/iconbutton/football-ball.png"));
+		this.setIconImage(logo.getImage());
 		
 		setTitle("Bảng xếp hạng");
 		setSize(1280,750);

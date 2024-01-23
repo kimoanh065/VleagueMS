@@ -165,6 +165,9 @@ public class Register extends JFrame {
 		con.add(pnmain);
 		con.add(lbbg);
 		
+		ImageIcon logo = new ImageIcon(getClass().getResource("/iconbutton/register.png"));
+		this.setIconImage(logo.getImage());
+		
 		setSize(1280,750);
 		setTitle("Register");
 		setLocationRelativeTo(null);

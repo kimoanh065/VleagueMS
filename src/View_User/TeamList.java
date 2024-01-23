@@ -77,7 +77,7 @@ public class TeamList extends JFrame {
 		JPanel pnbutton = new JPanel();
 		pnbutton.setOpaque(false);
 		
-		JButton jbback = new JButton();
+		JButton jbback = new JButton("Trang chủ");
         jbback.setIcon(new ImageIcon(Rank.class.getResource("/iconbutton/home.png")));
 		
 		JScrollPane scrollPane = new JScrollPane();
@@ -127,7 +127,8 @@ public class TeamList extends JFrame {
 		con.add(lbbackground);
 		
 		
-		
+		ImageIcon logo = new ImageIcon(getClass().getResource("/iconbutton/football-ball.png"));
+		this.setIconImage(logo.getImage());
 		
 		setTitle("Danh sách đội bóng");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);

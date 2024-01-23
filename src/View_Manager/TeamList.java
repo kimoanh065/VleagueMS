@@ -127,7 +127,8 @@ public class TeamList extends JFrame {
 		con.add(lbbackground);
 		
 		
-		
+		ImageIcon logo = new ImageIcon(getClass().getResource("/iconbutton/football-ball.png"));
+		this.setIconImage(logo.getImage());
 		
 		setTitle("Danh sách đội bóng");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);

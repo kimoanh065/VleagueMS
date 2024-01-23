@@ -14,4 +14,36 @@
 	<natures>
 		<nature>org.eclipse.jdt.core.javanature</nature>
 	</natures>
+	<linkedResources>
+		<link>
+			<name>src/iconbutton/arrow_back.png</name>
+			<type>1</type>
+			<location>C:/Users/kimoa/eclipse-workspace/Vleague1/src/iconbutton/arrow_back.png</location>
+		</link>
+		<link>
+			<name>src/iconbutton/bar_chart.png</name>
+			<type>1</type>
+			<location>C:/Users/kimoa/eclipse-workspace/Vleague1/src/iconbutton/bar_chart.png</location>
+		</link>
+		<link>
+			<name>src/iconbutton/filter.png</name>
+			<type>1</type>
+			<location>C:/Users/kimoa/eclipse-workspace/Vleague1/src/iconbutton/filter.png</location>
+		</link>
+		<link>
+			<name>src/iconbutton/football-ball.png</name>
+			<type>1</type>
+			<location>C:/Users/kimoa/eclipse-workspace/Vleague1/src/iconbutton/football-ball.png</location>
+		</link>
+		<link>
+			<name>src/iconbutton/login.png</name>
+			<type>1</type>
+			<location>C:/Users/kimoa/eclipse-workspace/Vleague1/src/iconbutton/user-interface.png</location>
+		</link>
+		<link>
+			<name>src/iconbutton/register.png</name>
+			<type>1</type>
+			<location>C:/Users/kimoa/eclipse-workspace/Vleague1/src/iconbutton/register.png</location>
+		</link>
+	</linkedResources>
 </projectDescription>

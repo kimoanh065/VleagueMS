@@ -138,8 +138,10 @@ public class Sponsor extends JFrame {
 		con.add(pnicon);
 		con.add(lbbackground);
 		
+		ImageIcon logo = new ImageIcon(getClass().getResource("/iconbutton/football-ball.png"));
+		this.setIconImage(logo.getImage());
 		
-		setTitle("Sponsor");
+		setTitle("Tài trợ");
 		setSize(1280,750);
 		setVisible(true);
 		setLocationRelativeTo(null);

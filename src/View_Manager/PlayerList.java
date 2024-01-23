@@ -269,6 +269,9 @@ public class PlayerList extends JFrame {
 		con.add(pnmain);
 		con.add(lbbackground);
 		
+		ImageIcon logo = new ImageIcon(getClass().getResource("/iconbutton/football-ball.png"));
+		this.setIconImage(logo.getImage());
+		
 		setTitle("Danh sách cầu thủ");
 		setVisible(true);
 		setSize(1280,750);
